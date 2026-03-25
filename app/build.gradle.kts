@@ -38,24 +38,32 @@ android {
 }
 
 dependencies {
-    // Standard Core Libraries (these usually come default and work with your libs catalog)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
 
-    // Compose BOM (Bill of Materials) - Defines the versions for all Compose libraries
     val composeBom = platform("androidx.compose:compose-bom:2024.02.00")
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
-    // Jetpack Compose UI (Hardcoded strings bypass the TOML file entirely)
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
     implementation("androidx.compose.material3:material3")
 
-    // OUR CUSTOM ADDITIONS: Media3 (ExoPlayer) for Background Audio
+    // Extended icons — needed for Shuffle, SkipPrevious, SkipNext, Repeat, RepeatOne
+    implementation("androidx.compose.material:material-icons-extended")
+
+    // Media3 / ExoPlayer for background audio
     implementation("androidx.media3:media3-exoplayer:1.2.1")
     implementation("androidx.media3:media3-session:1.2.1")
     implementation("androidx.media3:media3-ui:1.2.1")
+
+    // Test dependencies
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.junit)
+    androidTestImplementation(libs.androidx.espresso.core)
+    androidTestImplementation(libs.androidx.compose.ui.test.junit4)
+    debugImplementation(libs.androidx.compose.ui.tooling)
+    debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
